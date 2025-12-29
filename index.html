@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Шпион</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: #0b0f1a;
+      color: #e9eefc;
+    }
+    .wrap {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      margin-bottom: 16px;
+      font-size: 22px;
+    }
+    .panel {
+      background: #121a2b;
+      border-radius: 14px;
+      padding: 16px;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: none;
+      font-size: 14px;
+    }
+    button {
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+    }
+    .add {
+      background: #2a3b67;
+      color: #e9eefc;
+    }
+    .play {
+      background: #7aa2ff;
+      color: #081022;
+    }
+    .reset {
+      background: #1f2c4c;
+      color: #e9eefc;
+    }
+    .hint {
+      font-size: 13px;
+      color: #9fb0d0;
+      margin: 8px 0 12px;
+    }
+    .list {
+      margin-bottom: 14px;
+    }
+    .list div {
+      display: inline-block;
+      background: rgba(255,255,255,.08);
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin: 4px 6px 0 0;
+      font-size: 13px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    @media (min-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .card {
+      background: rgba(255,255,255,.04);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .namebtn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      background: rgba(255,255,255,.06);
+      color: #e9eefc;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .role {
+      margin-top: 10px;
+      padding: 10px;
+      background: rgba(0,0,0,.25);
+      border-radius: 10px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Игра «Шпион»</h1>
+
+  <div class="panel">
+    <div class="row">
+      <input id="nameInput" placeholder="Имя игрока" />
+      <button class="add" id="addBtn">Добавить</button>
+    </div>
+
+    <div class="list" id="playerList"></div>
+
+    <div class="row">
+      <button class="play" id="playBtn">Играть</button>
+      <button class="reset" id="resetBtn">Сброс</button>
+    </div>
+
+    <div class="hint">
+      Нажми «Играть». Нажми на имя — увидишь роль. Нажми ещё раз — карточка исчезнет.
+    </div>
+
+    <div id="grid" class="grid"></div>
+  </div>
+</div>
+
+<script>
+  const characters = [
+    "Гарри Поттер",
+    "Гермиона Грейнджер",
+    "Драко Малфой",
+    "Сириус Блэк",
+    "Римус Люпин",
+    "Минерва Макгонагалл",
+    "Северус Снейп",
+    "Беллатриса Лестрейндж",
+    "Альбус Дамблдор",
+    "Люциус Малфой",
+    "Нимфадора Тонкс"
+  ];
+
+  let players = [];
+
+  const nameInput = document.getElementById("nameInput");
+  const addBtn = document.getElementById("addBtn");
+  const playerList = document.getElementById("playerList");
+  const playBtn = document.getElementById("playBtn");
+  const resetBtn = document.getElementById("resetBtn");
+  const grid = document.getElementById("grid");
+
+  function renderPlayers() {
+    playerList.innerHTML = "";
+    players.forEach(name => {
+      const el = document.createElement("div");
+      el.textContent = name;
+      playerList.appendChild(el);
+    });
+  }
+
+  addBtn.onclick = () => {
+    const name = nameInput.value.trim();
+    if (!name) return;
+    players.push(name);
+    nameInput.value = "";
+    renderPlayers();
+  };
+
+  function rand(n) {
+    return Math.floor(Math.random() * n);
+  }
+
+  function buildRound() {
+    const character = characters[rand(characters.length)];
+    const spyIndex = rand(players.length);
+
+    return players.map((name, i) => ({
+      name,
+      role: i === spyIndex ? "ТЫ ШПИОН" : character
+    }));
+  }
+
+  function render(round) {
+    grid.innerHTML = "";
+    const shuffled = round.sort(() => Math.random() - 0.5);
+
+    shuffled.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "card";
+
+      const btn = document.createElement("button");
+      btn.className = "namebtn";
+      btn.textContent = item.name;
+
+      let opened = false;
+
+      btn.onclick = () => {
+        if (!opened) {
+          opened = true;
+          const role = document.createElement("div");
+          role.className = "role";
+          role.textContent = item.role;
+          card.appendChild(role);
+        } else {
+          card.remove();
+        }
+      };
+
+      card.appendChild(btn);
+      grid.appendChild(card);
+    });
+  }
+
+  playBtn.onclick = () => {
+    if (players.length < 3) {
+      alert("Добавь минимум 3 игрока");
+      return;
+    }
+    render(buildRound());
+  };
+
+  resetBtn.onclick = () => {
+    players = [];
+    renderPlayers();
+    grid.innerHTML = "";
+  };
+</script>
+</body>
+</html>
