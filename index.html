@@ -94,7 +94,6 @@
     line-height:1.35;
   }
 
-  /* ВСЕ КАРТОЧКИ В ОДИН СТОЛБИК */
   .grid{
     display:flex;
     flex-direction:column;
@@ -108,7 +107,6 @@
     padding:12px;
   }
 
-  /* ИМЯ ПО ЦЕНТРУ */
   .namebtn{
     width:100%;
     padding:14px;
@@ -168,7 +166,6 @@
         <option value="harry">Гарри Поттер</option>
         <option value="marvel">Marvel</option>
       </select>
-
       <select id="spyCount"></select>
     </div>
 
@@ -186,8 +183,7 @@
     </div>
 
     <div class="hint">
-      Нажмите «Играть».<br>
-      Нажмите на имя, чтобы увидеть роль.<br>
+      Нажмите «Играть». Нажмите на имя, чтобы увидеть роль.
       Повторный клик убирает карточку.
     </div>
 
@@ -197,17 +193,43 @@
 
 <script>
   const UNIVERSES = {
-    harry:[
+    harry: [
       {name:"Гарри Поттер",img:"img/harry/harry.jpg"},
       {name:"Гермиона Грейнджер",img:"img/harry/hermione.jpg"},
       {name:"Рон Уизли",img:"img/harry/ron.jpg"},
-      {name:"Драко Малфой",img:"img/harry/draco.jpg"}
+      {name:"Драко Малфой",img:"img/harry/draco.jpg"},
+      {name:"Альбус Дамблдор",img:"img/harry/dumbledore.jpg"},
+      {name:"Северус Снегг",img:"img/harry/snape.jpg"},
+      {name:"Минерва Макгонагалл",img:"img/harry/mcgonagall.jpg"},
+      {name:"Рубеус Хагрид",img:"img/harry/hagrid.jpg"},
+      {name:"Волан-де-Морт",img:"img/harry/voldemort.jpg"},
+      {name:"Сириус Блэк",img:"img/harry/sirius.jpg"},
+      {name:"Джинни Уизли",img:"img/harry/ginny.jpg"},
+      {name:"Невилл Долгопупс",img:"img/harry/neville.jpg"},
+      {name:"Луна Лавгуд",img:"img/harry/luna.jpg"},
+      {name:"Беллатриса Лестрейндж",img:"img/harry/bellatrix.jpg"},
+      {name:"Доби",img:"img/harry/dobby.jpg"},
+      {name:"Фред Уизли",img:"img/harry/fred.jpg"},
+      {name:"Джордж Уизли",img:"img/harry/george.jpg"}
     ],
-    marvel:[
+    marvel: [
       {name:"Тони Старк",img:"img/marvel/tony.jpg"},
       {name:"Стив Роджерс",img:"img/marvel/steve.jpg"},
       {name:"Тор",img:"img/marvel/thor.jpg"},
-      {name:"Локи",img:"img/marvel/loki.jpg"}
+      {name:"Наташа Романофф",img:"img/marvel/natasha.jpg"},
+      {name:"Брюс Беннер",img:"img/marvel/bruce.jpg"},
+      {name:"Клинт Бартон",img:"img/marvel/clint.jpg"},
+      {name:"Питер Паркер",img:"img/marvel/peter.jpg"},
+      {name:"Локи",img:"img/marvel/loki.jpg"},
+      {name:"Т'Чалла",img:"img/marvel/tchalla.jpg"},
+      {name:"Доктор Стрэндж",img:"img/marvel/strange.jpg"},
+      {name:"Ванда Максимофф",img:"img/marvel/wanda.jpg"},
+      {name:"Скотт Лэнг",img:"img/marvel/scott.jpg"},
+      {name:"Питер Квилл",img:"img/marvel/quill.jpg"},
+      {name:"Гамора",img:"img/marvel/gamora.jpg"},
+      {name:"Ракета",img:"img/marvel/rocket.jpg"},
+      {name:"Грут",img:"img/marvel/groot.jpg"},
+      {name:"Ник Фьюри",img:"img/marvel/fury.jpg"}
     ]
   };
 
