@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="ru">
 <head>
@@ -179,7 +178,6 @@
     border:1px solid var(--spybord);
   }
 
-  /* Картинка крупная: у вас исходники 1000x1000, поэтому даём больше места */
   .role .char{
     display:flex;
     flex-direction:column;
@@ -221,6 +219,7 @@
       <select id="universe" aria-label="Вселенная">
         <option value="harry">Гарри Поттер</option>
         <option value="marvel">Marvel</option>
+        <option value="smeshariki">Смешарики</option>
       </select>
 
       <select id="spyCount" aria-label="Количество шпионов" title="Количество шпионов"></select>
@@ -249,7 +248,7 @@
       Нажмите «Играть». Нажмите на имя игрока, чтобы увидеть роль, персонажа и картинку.
       Повторный клик по этому же игроку удалит карточку с экрана.
       <div class="smallnote">
-        Картинки должны лежать в репозитории по путям вида img/harry/harry.jpg и img/marvel/tony.jpg
+        Картинки должны лежать в репозитории по путям вида img/smeshariki/krosh.jpg и т.д.
       </div>
     </div>
 
@@ -263,11 +262,10 @@
 
   /*
     Персонажи: { name, img }
-    Изображения 1000x1000 отлично подходят, так как мы показываем их крупно.
-    Положите файлы в репозиторий:
+    Пример путей:
       img/harry/harry.jpg
       img/marvel/tony.jpg
-    и т.д.
+      img/smeshariki/krosh.jpg
   */
   const UNIVERSES = {
     harry: [
@@ -307,6 +305,62 @@
       { name: "Ракета", img: "img/marvel/rocket.jpg" },
       { name: "Грут", img: "img/marvel/groot.jpg" },
       { name: "Ник Фьюри", img: "img/marvel/fury.jpg" }
+    ],
+    smeshariki: [
+      { name: "Крош", img: "img/smeshariki/krosh.jpg" },
+      { name: "Ёжик", img: "img/smeshariki/yozhik.jpg" },
+      { name: "Нюша", img: "img/smeshariki/nyusha.jpg" },
+      { name: "Бараш", img: "img/smeshariki/barash.jpg" },
+      { name: "Копатыч", img: "img/smeshariki/kopatych.jpg" },
+      { name: "Совунья", img: "img/smeshariki/sovunya.jpg" },
+      { name: "Кар-Карыч", img: "img/smeshariki/karkarych.jpg" },
+      { name: "Лосяш", img: "img/smeshariki/losyash.jpg" },
+      { name: "Пин", img: "img/smeshariki/pin.jpg" },
+      { name: "Биби", img: "img/smeshariki/bibi.jpg" },
+
+      { name: "Панди", img: "img/smeshariki/pandi.jpg" },
+      { name: "Лили", img: "img/smeshariki/lili.jpg" },
+      { name: "Муля", img: "img/smeshariki/mulya.jpg" },
+      { name: "Муня", img: "img/smeshariki/munya.jpg" },
+      { name: "Мышарик", img: "img/smeshariki/mysharik.jpg" },
+      { name: "Тигриция", img: "img/smeshariki/tigrizia.jpg" },
+      { name: "Лягушка", img: "img/smeshariki/frog.jpg" },
+      { name: "Железная няня", img: "img/smeshariki/iron_nanny.jpg" },
+      { name: "Умникум", img: "img/smeshariki/umnikum.jpg" },
+      { name: "Хрум", img: "img/smeshariki/hrum.jpg" },
+      { name: "Шуша", img: "img/smeshariki/shusha.jpg" },
+      { name: "Игогоша", img: "img/smeshariki/igogosha.jpg" },
+      { name: "Чёрный Ловелас", img: "img/smeshariki/black_lovelace.jpg" },
+      { name: "Жители Плутона", img: "img/smeshariki/pluto.jpg" },
+      { name: "Гусеница Копатыча (Гусен Калигари)", img: "img/smeshariki/gusen.jpg" },
+      { name: "Ушарик", img: "img/smeshariki/usharik.jpg" },
+      { name: "Бу-Ханку", img: "img/smeshariki/bu_hanku.jpg" },
+      { name: "Детище Лосяша из глины", img: "img/smeshariki/clay_child.jpg" },
+      { name: "Клон Лосяша", img: "img/smeshariki/losyash_clone.jpg" },
+      { name: "Дятел-нотариус", img: "img/smeshariki/woodpecker_notary.jpg" },
+      { name: "Оживший бутерброд", img: "img/smeshariki/sandwich.jpg" },
+      { name: "Тузя (кукла Нюши)", img: "img/smeshariki/tuzya.jpg" },
+      { name: "Стражи полюсов", img: "img/smeshariki/poles.jpg" },
+      { name: "Кот-певец", img: "img/smeshariki/singer_cat.jpg" },
+      { name: "Микки Поль (серия «Массы и расстояния»)", img: "img/smeshariki/mickey_paul.jpg" },
+
+      { name: "Червяки", img: "img/smeshariki/worms.jpg" },
+      { name: "Резонанс", img: "img/smeshariki/resonance.jpg" },
+      { name: "Отец Копатыча", img: "img/smeshariki/kopatych_father.jpg" },
+      { name: "Прабабушка Совуньи", img: "img/smeshariki/sovunya_greatgrandmother.jpg" },
+      { name: "Мистический герой", img: "img/smeshariki/mystic.jpg" },
+      { name: "Коняш", img: "img/smeshariki/konyash.jpg" },
+      { name: "Мармадюк", img: "img/smeshariki/marmaduk.jpg" },
+      { name: "Шорк", img: "img/smeshariki/shork.jpg" },
+      { name: "Крот", img: "img/smeshariki/mole.jpg" },
+      { name: "Агент", img: "img/smeshariki/agent.jpg" },
+      { name: "Маракучос", img: "img/smeshariki/marakuchos.jpg" },
+      { name: "Таксист", img: "img/smeshariki/taxi.jpg" },
+      { name: "Демон", img: "img/smeshariki/demon.jpg" },
+      { name: "Зебра", img: "img/smeshariki/zebra.jpg" },
+      { name: "Бегемот", img: "img/smeshariki/hippo.jpg" },
+      { name: "Сибиряк", img: "img/smeshariki/siberian.jpg" },
+      { name: "Вселенная", img: "img/smeshariki/universe.jpg" }
     ]
   };
 
@@ -543,13 +597,12 @@
     const wrap = document.createElement("div");
     wrap.className = "char";
 
-    const img = document.createElement("img");
-    img.alt = assignment.role.name;
-    img.src = assignment.role.img;
-
     const nm = document.createElement("div");
     nm.className = "charname";
     nm.textContent = assignment.role.name;
+
+    const img = document.createElement("img");
+    img.alt = assignment.role.name;
 
     img.onerror = () => {
       img.style.display = "none";
@@ -558,6 +611,8 @@
       warn.textContent = "Картинка не найдена: " + assignment.role.img;
       wrap.insertBefore(warn, nm);
     };
+
+    img.src = assignment.role.img;
 
     wrap.appendChild(img);
     wrap.appendChild(nm);
@@ -668,7 +723,10 @@
     els.resetBtn.onclick = resetAll;
 
     els.playBtn.onclick = () => {
-      if(roundActive) els.grid.innerHTML = "";
+      if(roundActive){
+        els.grid.innerHTML = "";
+        roundActive = false;
+      }
       startRound();
     };
 
@@ -684,4 +742,3 @@
 </script>
 </body>
 </html>
-```
